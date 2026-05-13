@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_option_card.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class SyncPreferencesStep
     extends StatefulWidget {
@@ -30,119 +29,107 @@ class _SyncPreferencesStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 11,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 11,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Choose sync preferences',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Control how your data, routines, goals, and personalization settings are stored.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 36),
-
-                OnboardingOptionCard(
-                  title: 'Cloud Sync',
-
-                  subtitle:
-                      'Automatically back up and sync your experience across devices.',
-
-                  selected:
-                      selectedPreference ==
-                          'Cloud Sync',
-
-                  onTap: () {
-                    setState(() {
-                      selectedPreference =
-                          'Cloud Sync';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Ask Before Syncing',
-
-                  subtitle:
-                      'Receive prompts before syncing important data.',
-
-                  selected:
-                      selectedPreference ==
-                          'Ask Before Syncing',
-
-                  onTap: () {
-                    setState(() {
-                      selectedPreference =
-                          'Ask Before Syncing';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Offline Only',
-
-                  subtitle:
-                      'Keep all information stored locally on your device only.',
-
-                  selected:
-                      selectedPreference ==
-                          'Offline Only',
-
-                  onTap: () {
-                    setState(() {
-                      selectedPreference =
-                          'Offline Only';
-                    });
-                  },
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Choose sync preferences',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Control how your data, routines, goals, and personalization settings are stored.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 36),
+
+          OnboardingOptionCard(
+            title: 'Cloud Sync',
+
+            subtitle:
+                'Automatically back up and sync your experience across devices.',
+
+            selected:
+                selectedPreference ==
+                    'Cloud Sync',
+
+            onTap: () {
+              setState(() {
+                selectedPreference =
+                    'Cloud Sync';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Ask Before Syncing',
+
+            subtitle:
+                'Receive prompts before syncing important data.',
+
+            selected:
+                selectedPreference ==
+                    'Ask Before Syncing',
+
+            onTap: () {
+              setState(() {
+                selectedPreference =
+                    'Ask Before Syncing';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Offline Only',
+
+            subtitle:
+                'Keep all information stored locally on your device only.',
+
+            selected:
+                selectedPreference ==
+                    'Offline Only',
+
+            onTap: () {
+              setState(() {
+                selectedPreference =
+                    'Offline Only';
+              });
+            },
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
