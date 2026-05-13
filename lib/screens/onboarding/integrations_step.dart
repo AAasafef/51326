@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/category_picker_chip.dart';
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class IntegrationsStep
     extends StatefulWidget {
@@ -72,99 +71,87 @@ class _IntegrationsStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 12,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 12,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Connect your apps',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Optional integrations help Ciantis organize your routines, wellness, scheduling, and productivity.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 34),
-
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Wrap(
-                      spacing: 14,
-                      runSpacing: 14,
-
-                      children:
-                          integrations.map(
-                        (
-                          integration,
-                        ) {
-
-                          return CategoryPickerChip(
-                            text:
-                                integration,
-
-                            selected:
-                                selectedIntegrations
-                                    .contains(
-                              integration,
-                            ),
-
-                            onTap: () {
-                              toggleIntegration(
-                                integration,
-                              );
-                            },
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Connect your apps',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Optional integrations help Ciantis organize your routines, wellness, scheduling, and productivity.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 34),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Wrap(
+                spacing: 14,
+                runSpacing: 14,
+
+                children:
+                    integrations.map(
+                  (
+                    integration,
+                  ) {
+
+                    return CategoryPickerChip(
+                      text:
+                          integration,
+
+                      selected:
+                          selectedIntegrations
+                              .contains(
+                        integration,
+                      ),
+
+                      onTap: () {
+                        toggleIntegration(
+                          integration,
+                        );
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
