@@ -5,7 +5,7 @@ import 'config/app_config.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/onboarding/onboarding_flow_screen.dart';
 
-import 'theme/ciantis_theme.dart';
+import 'services/onboarding_service.dart';
 
 void main() {
   runApp(
@@ -21,6 +21,16 @@ class CiantisApp
 
   @override
   Widget build(BuildContext context) {
+
+    final bool skipOnboarding =
+
+        AppConfig
+            .skipOnboardingForDevelopment ||
+
+        OnboardingService
+                .instance
+                .onboardingCompleted;
+
     return MaterialApp(
       debugShowCheckedModeBanner:
           false,
@@ -35,8 +45,7 @@ class CiantisApp
       ),
 
       home:
-          AppConfig
-                  .skipOnboardingForDevelopment
+          skipOnboarding
               ? const DashboardScreen()
               : const OnboardingFlowScreen(),
     );
