@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../services/onboarding_service.dart';
+
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_option_card.dart';
 import '../../widgets/onboarding_page_shell.dart';
@@ -23,6 +25,16 @@ class _ThemeStepState
 
   String selectedTheme =
       'Dune';
+
+  void continueStep() {
+
+    OnboardingService
+        .instance
+        .selectedTheme =
+        selectedTheme;
+
+    widget.onNext();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +154,7 @@ class _ThemeStepState
             text: 'Continue',
 
             onPressed:
-                widget.onNext,
+                continueStep,
           ),
         ],
       ),
