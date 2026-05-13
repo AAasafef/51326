@@ -15,6 +15,7 @@ import 'notification_style_step.dart';
 import 'profile_photo_step.dart';
 import 'sync_preferences_step.dart';
 import 'theme_step.dart';
+import 'wallpaper_preferences_step.dart';
 import 'welcome_step.dart';
 
 class OnboardingFlowScreen
@@ -90,6 +91,10 @@ class _OnboardingFlowScreenState
     ),
 
     IntegrationsStep(
+      onNext: nextPage,
+    ),
+
+    WallpaperPreferencesStep(
       onNext: nextPage,
     ),
 
