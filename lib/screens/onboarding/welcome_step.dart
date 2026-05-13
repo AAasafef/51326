@@ -1,101 +1,110 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/ciantis_theme.dart';
 import '../../widgets/glass_container.dart';
-import '../../widgets/luxury_button.dart';
+import '../../widgets/onboarding_background.dart';
+import '../../widgets/onboarding_bottom_button.dart';
+import '../../widgets/onboarding_progress_bar.dart';
 
 class WelcomeStep extends StatelessWidget {
-  const WelcomeStep({super.key});
+
+  final VoidCallback onNext;
+
+  const WelcomeStep({
+    super.key,
+    required this.onNext,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: CiantisTheme.mainGradient,
-        ),
-        child: Stack(
-          children: [
-            Container(
-              color: Colors.black.withOpacity(
-                CiantisTheme.overlayOpacity,
-              ),
+      body: OnboardingBackground(
+        child: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 18,
             ),
 
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 18,
+            child: Column(
+              children: [
+
+                // PROGRESS
+                const OnboardingProgressBar(
+                  currentStep: 0,
+                  totalSteps: 18,
                 ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 40),
 
-                    // LOGO
-                    Center(
-                      child: GlassContainer(
-                        padding: const EdgeInsets.all(20),
-                        borderRadius: 28,
-                        child: const Text(
-                          'C',
-                          style: TextStyle(
-                            color: CiantisTheme.white,
-                            fontSize: 38,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ),
+                const SizedBox(height: 40),
+
+                // LOGO
+                Center(
+                  child: GlassContainer(
+                    padding:
+                        const EdgeInsets.all(
+                      20,
                     ),
 
-                    const Spacer(),
+                    borderRadius: 28,
 
-                    const Text(
-                      'Welcome to',
-                      textAlign: TextAlign.center,
+                    child: const Text(
+                      'C',
                       style: TextStyle(
-                        color: CiantisTheme.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                        fontSize: 38,
+                        fontWeight:
+                            FontWeight.w300,
                       ),
                     ),
-
-                    const Text(
-                      'ciantis',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: CiantisTheme.white,
-                        fontSize: 46,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    const Text(
-                      'Your personal operating system for clarity, focus, family, and growth.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: CiantisTheme.whiteSoft,
-                        fontSize: 15,
-                        height: 1.5,
-                      ),
-                    ),
-
-                    const Spacer(),
-
-                    LuxuryButton(
-                      text: 'Begin',
-                      icon: Icons.arrow_forward_rounded,
-                      onPressed: () {},
-                    ),
-
-                    const SizedBox(height: 22),
-                  ],
+                  ),
                 ),
-              ),
+
+                const Spacer(),
+
+                const Text(
+                  'Welcome to',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight:
+                        FontWeight.w300,
+                  ),
+                ),
+
+                const Text(
+                  'ciantis',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 46,
+                    fontWeight:
+                        FontWeight.w300,
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                const Text(
+                  'Your personal operating system for clarity, focus, family, and growth.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 15,
+                    height: 1.5,
+                  ),
+                ),
+
+                const Spacer(),
+
+                OnboardingBottomButton(
+                  text: 'Begin',
+
+                  onPressed: onNext,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
