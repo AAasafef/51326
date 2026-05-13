@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../dashboard/dashboard_screen.dart';
 
 import 'biometric_setup_step.dart';
+import 'daily_rhythm_step.dart';
 import 'dashboard_style_step.dart';
 import 'final_setup_step.dart';
 import 'focus_areas_step.dart';
@@ -65,6 +66,10 @@ class _OnboardingFlowScreenState
     ),
 
     BiometricSetupStep(
+      onNext: nextPage,
+    ),
+
+    DailyRhythmStep(
       onNext: nextPage,
     ),
 
