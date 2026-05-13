@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../dashboard/dashboard_screen.dart';
+
+import 'final_setup_step.dart';
 import 'focus_areas_step.dart';
 import 'menu_setup_step.dart';
 import 'name_step.dart';
@@ -49,6 +52,10 @@ class _OnboardingFlowScreenState
     MenuSetupStep(
       onNext: nextPage,
     ),
+
+    FinalSetupStep(
+      onFinish: finishSetup,
+    ),
   ];
 
   void nextPage() {
@@ -64,6 +71,19 @@ class _OnboardingFlowScreenState
         curve: Curves.easeInOut,
       );
     }
+  }
+
+  void finishSetup() {
+
+    Navigator.pushReplacement(
+      context,
+
+      MaterialPageRoute(
+        builder:
+            (_) =>
+                const DashboardScreen(),
+      ),
+    );
   }
 
   @override
