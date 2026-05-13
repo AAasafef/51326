@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/dashboard_header.dart';
 import '../../widgets/glass_container.dart';
 import '../../widgets/luxury_bottom_nav_bar.dart';
+import '../../widgets/luxury_side_menu.dart';
 
 class DashboardScreen
     extends StatefulWidget {
@@ -22,6 +23,8 @@ class _DashboardScreenState
         DashboardScreen> {
 
   int currentIndex = 0;
+
+  bool menuOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,168 +46,330 @@ class _DashboardScreenState
         },
       ),
 
-      body: SafeArea(
-        child: Padding(
-          padding:
-              const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 18,
-          ),
+      body: Stack(
+        children: [
 
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+          // MAIN CONTENT
+          SafeArea(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 18,
+              ),
 
-              children: [
+              child:
+                  SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment
+                          .start,
 
-                // HEADER
-                const DashboardHeader(),
+                  children: [
 
-                const SizedBox(height: 28),
+                    // HEADER
+                    Row(
+                      children: [
 
-                // HERO CARD
-                GlassContainer(
-                  borderRadius: 34,
+                        GestureDetector(
+                          onTap: () {
 
-                  padding:
-                      const EdgeInsets.all(
-                    24,
-                  ),
+                            setState(() {
+                              menuOpen =
+                                  !menuOpen;
+                            });
+                          },
 
-                  child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                          child: Container(
+                            height: 48,
+                            width: 48,
 
-                    children: [
+                            decoration:
+                                BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(
+                                18,
+                              ),
 
-                      Text(
-                        'Today',
-                        style: TextStyle(
-                          color: Colors.white
-                              .withOpacity(
-                            .65,
+                              color:
+                                  Colors.white
+                                      .withOpacity(
+                                .08,
+                              ),
+                            ),
+
+                            child: const Icon(
+                              Icons.menu,
+                              color:
+                                  Colors.white,
+                            ),
                           ),
-
-                          fontSize: 14,
                         ),
+
+                        const SizedBox(
+                          width: 16,
+                        ),
+
+                        const Expanded(
+                          child:
+                              DashboardHeader(),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 28,
+                    ),
+
+                    // HERO CARD
+                    GlassContainer(
+                      borderRadius: 34,
+
+                      padding:
+                          const EdgeInsets.all(
+                        24,
                       ),
 
-                      const SizedBox(height: 10),
+                      child: Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment
+                                .start,
 
-                      const Text(
-                        'Your Life OS is synced and ready.',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight:
-                              FontWeight.w300,
-                          height: 1.3,
-                        ),
-                      ),
-
-                      const SizedBox(height: 18),
-
-                      Text(
-                        'Your routines, wellness, goals, and family systems are organized beautifully in one place.',
-                        style: TextStyle(
-                          color: Colors.white
-                              .withOpacity(
-                            .70,
-                          ),
-
-                          fontSize: 14,
-                          height: 1.6,
-                        ),
-                      ),
-
-                      const SizedBox(height: 24),
-
-                      Row(
                         children: [
 
-                          _heroButton(
-                            icon:
-                                Icons.auto_awesome,
+                          Text(
+                            'Today',
+                            style:
+                                TextStyle(
+                              color: Colors
+                                  .white
+                                  .withOpacity(
+                                .65,
+                              ),
 
-                            text:
-                                'Focus Mode',
+                              fontSize:
+                                  14,
+                            ),
                           ),
 
-                          const SizedBox(width: 14),
+                          const SizedBox(
+                            height: 10,
+                          ),
 
-                          _heroButton(
-                            icon:
-                                Icons.favorite_border,
+                          const Text(
+                            'Your Life OS is synced and ready.',
+                            style:
+                                TextStyle(
+                              color: Colors
+                                  .white,
 
-                            text:
-                                'Wellness',
+                              fontSize:
+                                  28,
+
+                              fontWeight:
+                                  FontWeight
+                                      .w300,
+
+                              height:
+                                  1.3,
+                            ),
+                          ),
+
+                          const SizedBox(
+                            height: 18,
+                          ),
+
+                          Text(
+                            'Your routines, wellness, goals, and family systems are organized beautifully in one place.',
+                            style:
+                                TextStyle(
+                              color: Colors
+                                  .white
+                                  .withOpacity(
+                                .70,
+                              ),
+
+                              fontSize:
+                                  14,
+
+                              height:
+                                  1.6,
+                            ),
+                          ),
+
+                          const SizedBox(
+                            height: 24,
+                          ),
+
+                          Row(
+                            children: [
+
+                              _heroButton(
+                                icon: Icons
+                                    .auto_awesome,
+
+                                text:
+                                    'Focus Mode',
+                              ),
+
+                              const SizedBox(
+                                width:
+                                    14,
+                              ),
+
+                              _heroButton(
+                                icon: Icons
+                                    .favorite_border,
+
+                                text:
+                                    'Wellness',
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 26),
-
-                // SECTION TITLE
-                const Text(
-                  'Your Spaces',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 18),
-
-                GridView.count(
-                  crossAxisCount: 2,
-
-                  shrinkWrap: true,
-
-                  physics:
-                      const NeverScrollableScrollPhysics(),
-
-                  mainAxisSpacing: 18,
-                  crossAxisSpacing: 18,
-
-                  childAspectRatio: .95,
-
-                  children: const [
-
-                    _DashboardCard(
-                      title: 'Family',
-                      icon: Icons.home,
                     ),
 
-                    _DashboardCard(
-                      title: 'Health',
-                      icon: Icons.favorite,
+                    const SizedBox(
+                      height: 26,
                     ),
 
-                    _DashboardCard(
-                      title: 'Goals',
-                      icon:
-                          Icons.flag_outlined,
+                    // SECTION TITLE
+                    const Text(
+                      'Your Spaces',
+                      style: TextStyle(
+                        color:
+                            Colors.white,
+
+                        fontSize: 22,
+
+                        fontWeight:
+                            FontWeight
+                                .w300,
+                      ),
                     ),
 
-                    _DashboardCard(
-                      title: 'Calendar',
-                      icon:
-                          Icons.calendar_month,
+                    const SizedBox(
+                      height: 18,
+                    ),
+
+                    GridView.count(
+                      crossAxisCount: 2,
+
+                      shrinkWrap: true,
+
+                      physics:
+                          const NeverScrollableScrollPhysics(),
+
+                      mainAxisSpacing:
+                          18,
+
+                      crossAxisSpacing:
+                          18,
+
+                      childAspectRatio:
+                          .95,
+
+                      children: const [
+
+                        _DashboardCard(
+                          title:
+                              'Family',
+
+                          icon:
+                              Icons.home,
+                        ),
+
+                        _DashboardCard(
+                          title:
+                              'Health',
+
+                          icon: Icons
+                              .favorite,
+                        ),
+
+                        _DashboardCard(
+                          title:
+                              'Goals',
+
+                          icon: Icons
+                              .flag_outlined,
+                        ),
+
+                        _DashboardCard(
+                          title:
+                              'Calendar',
+
+                          icon: Icons
+                              .calendar_month,
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 120,
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 120),
-              ],
+              ),
             ),
           ),
-        ),
+
+          // DARK OVERLAY
+          if (menuOpen)
+            GestureDetector(
+              onTap: () {
+
+                setState(() {
+                  menuOpen = false;
+                });
+              },
+
+              child: Container(
+                color:
+                    Colors.black
+                        .withOpacity(
+                  .45,
+                ),
+              ),
+            ),
+
+          // SIDE MENU
+          AnimatedPositioned(
+            duration:
+                const Duration(
+              milliseconds: 260,
+            ),
+
+            curve: Curves.easeInOut,
+
+            left:
+                menuOpen
+                    ? 0
+                    : -320,
+
+            top: 0,
+            bottom: 0,
+
+            child: LuxurySideMenu(
+              selectedIndex:
+                  currentIndex,
+
+              onItemSelected:
+                  (index) {
+
+                setState(() {
+
+                  currentIndex =
+                      index;
+
+                  menuOpen =
+                      false;
+                });
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
