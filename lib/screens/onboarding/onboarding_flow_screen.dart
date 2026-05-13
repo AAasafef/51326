@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'focus_areas_step.dart';
+import 'menu_setup_step.dart';
 import 'name_step.dart';
 import 'theme_step.dart';
 import 'welcome_step.dart';
@@ -42,6 +43,10 @@ class _OnboardingFlowScreenState
     ),
 
     FocusAreasStep(
+      onNext: nextPage,
+    ),
+
+    MenuSetupStep(
       onNext: nextPage,
     ),
   ];
