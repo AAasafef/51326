@@ -14,6 +14,7 @@ import 'name_step.dart';
 import 'notification_style_step.dart';
 import 'privacy_preferences_step.dart';
 import 'profile_photo_step.dart';
+import 'quick_setup_step.dart';
 import 'sync_preferences_step.dart';
 import 'theme_step.dart';
 import 'wallpaper_preferences_step.dart';
@@ -105,6 +106,10 @@ class _OnboardingFlowScreenState
     ),
 
     WidgetsLayoutStep(
+      onNext: nextPage,
+    ),
+
+    QuickSetupStep(
       onNext: nextPage,
     ),
 
