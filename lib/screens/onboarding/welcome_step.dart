@@ -4,6 +4,7 @@ import '../../widgets/glass_container.dart';
 import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_skip_button.dart';
 
 class WelcomeStep extends StatelessWidget {
 
@@ -29,10 +30,24 @@ class WelcomeStep extends StatelessWidget {
             child: Column(
               children: [
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 0,
-                  totalSteps: 18,
+                // TOP
+                Row(
+                  children: [
+
+                    const Expanded(
+                      child:
+                          OnboardingProgressBar(
+                        currentStep: 0,
+                        totalSteps: 18,
+                      ),
+                    ),
+
+                    const SizedBox(width: 12),
+
+                    OnboardingSkipButton(
+                      onTap: onNext,
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 40),
