@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../services/onboarding_service.dart';
+
 import '../../widgets/category_picker_chip.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_page_shell.dart';
@@ -71,6 +73,16 @@ class _MenuSetupStepState
         }
       }
     });
+  }
+
+  void continueStep() {
+
+    OnboardingService
+        .instance
+        .selectedTabs =
+        selectedTabs;
+
+    widget.onNext();
   }
 
   @override
@@ -161,7 +173,7 @@ class _MenuSetupStepState
             text: 'Continue',
 
             onPressed:
-                widget.onNext,
+                continueStep,
           ),
         ],
       ),
