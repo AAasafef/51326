@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/category_picker_chip.dart';
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class MenuSetupStep
     extends StatefulWidget {
@@ -76,107 +75,95 @@ class _MenuSetupStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 4,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 4,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Build your side menu',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Choose up to 10 categories for your Life OS. You can always customize this later.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 18),
-
-                Text(
-                  '${selectedTabs.length}/10 selected',
-
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 13,
-                  ),
-                ),
-
-                const SizedBox(height: 28),
-
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Wrap(
-                      spacing: 14,
-                      runSpacing: 14,
-
-                      children:
-                          availableTabs.map(
-                        (tab) {
-
-                          return CategoryPickerChip(
-                            text: tab,
-
-                            selected:
-                                selectedTabs
-                                    .contains(
-                              tab,
-                            ),
-
-                            onTap: () {
-                              toggleTab(
-                                tab,
-                              );
-                            },
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Build your side menu',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Choose up to 10 categories for your Life OS. You can always customize this later.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 18),
+
+          Text(
+            '${selectedTabs.length}/10 selected',
+
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 13,
+            ),
+          ),
+
+          const SizedBox(height: 28),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Wrap(
+                spacing: 14,
+                runSpacing: 14,
+
+                children:
+                    availableTabs.map(
+                  (tab) {
+
+                    return CategoryPickerChip(
+                      text: tab,
+
+                      selected:
+                          selectedTabs
+                              .contains(
+                        tab,
+                      ),
+
+                      onTap: () {
+                        toggleTab(
+                          tab,
+                        );
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
