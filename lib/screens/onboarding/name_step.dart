@@ -6,7 +6,13 @@ import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_progress_bar.dart';
 
 class NameStep extends StatefulWidget {
-  const NameStep({super.key});
+
+  final VoidCallback onNext;
+
+  const NameStep({
+    super.key,
+    required this.onNext,
+  });
 
   @override
   State<NameStep> createState() =>
@@ -84,6 +90,7 @@ class _NameStepState
                 LuxuryTextField(
                   hintText:
                       'Preferred Name',
+
                   icon:
                       Icons.person_outline,
 
@@ -96,6 +103,7 @@ class _NameStepState
                 LuxuryTextField(
                   hintText:
                       'Subtitle or Motto',
+
                   icon:
                       Icons.edit_outlined,
 
@@ -108,7 +116,8 @@ class _NameStepState
                 OnboardingBottomButton(
                   text: 'Continue',
 
-                  onPressed: () {},
+                  onPressed:
+                      widget.onNext,
                 ),
               ],
             ),
