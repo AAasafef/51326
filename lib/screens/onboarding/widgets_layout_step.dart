@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_option_card.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class WidgetsLayoutStep
     extends StatefulWidget {
@@ -30,119 +29,107 @@ class _WidgetsLayoutStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 15,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 15,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Choose widget layout',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'This controls how information appears throughout your dashboard and home screens.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 36),
-
-                OnboardingOptionCard(
-                  title: 'Minimal',
-
-                  subtitle:
-                      'Large spacing, fewer widgets, and calm visual hierarchy.',
-
-                  selected:
-                      selectedLayout ==
-                          'Minimal',
-
-                  onTap: () {
-                    setState(() {
-                      selectedLayout =
-                          'Minimal';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Balanced',
-
-                  subtitle:
-                      'Balanced dashboard with wellness, goals, and productivity sections.',
-
-                  selected:
-                      selectedLayout ==
-                          'Balanced',
-
-                  onTap: () {
-                    setState(() {
-                      selectedLayout =
-                          'Balanced';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Information Dense',
-
-                  subtitle:
-                      'More widgets, analytics, quick actions, and detailed organization.',
-
-                  selected:
-                      selectedLayout ==
-                          'Information Dense',
-
-                  onTap: () {
-                    setState(() {
-                      selectedLayout =
-                          'Information Dense';
-                    });
-                  },
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Choose widget layout',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'This controls how information appears throughout your dashboard and home screens.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 36),
+
+          OnboardingOptionCard(
+            title: 'Minimal',
+
+            subtitle:
+                'Large spacing, fewer widgets, and calm visual hierarchy.',
+
+            selected:
+                selectedLayout ==
+                    'Minimal',
+
+            onTap: () {
+              setState(() {
+                selectedLayout =
+                    'Minimal';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Balanced',
+
+            subtitle:
+                'Balanced dashboard with wellness, goals, and productivity sections.',
+
+            selected:
+                selectedLayout ==
+                    'Balanced',
+
+            onTap: () {
+              setState(() {
+                selectedLayout =
+                    'Balanced';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Information Dense',
+
+            subtitle:
+                'More widgets, analytics, quick actions, and detailed organization.',
+
+            selected:
+                selectedLayout ==
+                    'Information Dense',
+
+            onTap: () {
+              setState(() {
+                selectedLayout =
+                    'Information Dense';
+              });
+            },
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
