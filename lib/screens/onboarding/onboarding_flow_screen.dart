@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../dashboard/dashboard_screen.dart';
 
+import 'dashboard_style_step.dart';
 import 'final_setup_step.dart';
 import 'focus_areas_step.dart';
 import 'menu_setup_step.dart';
@@ -55,6 +56,10 @@ class _OnboardingFlowScreenState
     ),
 
     NotificationStyleStep(
+      onNext: nextPage,
+    ),
+
+    DashboardStyleStep(
       onNext: nextPage,
     ),
 
