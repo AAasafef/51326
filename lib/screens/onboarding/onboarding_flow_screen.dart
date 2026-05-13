@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'name_step.dart';
+import 'theme_step.dart';
 import 'welcome_step.dart';
 
 class OnboardingFlowScreen
@@ -32,6 +33,10 @@ class _OnboardingFlowScreenState
     ),
 
     NameStep(
+      onNext: nextPage,
+    ),
+
+    ThemeStep(
       onNext: nextPage,
     ),
   ];
