@@ -18,6 +18,7 @@ import 'sync_preferences_step.dart';
 import 'theme_step.dart';
 import 'wallpaper_preferences_step.dart';
 import 'welcome_step.dart';
+import 'widgets_layout_step.dart';
 
 class OnboardingFlowScreen
     extends StatefulWidget {
@@ -100,6 +101,10 @@ class _OnboardingFlowScreenState
     ),
 
     PrivacyPreferencesStep(
+      onNext: nextPage,
+    ),
+
+    WidgetsLayoutStep(
       onNext: nextPage,
     ),
 
