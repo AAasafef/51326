@@ -1,3 +1,5 @@
+// lib/main.dart
+
 import 'package:flutter/material.dart';
 
 import 'config/app_config.dart';
@@ -15,6 +17,7 @@ void main() {
 
 class CiantisApp
     extends StatelessWidget {
+
   const CiantisApp({
     super.key,
   });
@@ -25,9 +28,9 @@ class CiantisApp
     final bool skipOnboarding =
 
         AppConfig
-            .skipOnboardingForDevelopment ||
+                .skipOnboardingForDevelopment ||
 
-        OnboardingService
+            OnboardingService
                 .instance
                 .onboardingCompleted;
 
@@ -39,9 +42,9 @@ class CiantisApp
 
       theme: ThemeData(
         scaffoldBackgroundColor:
-            Colors.black,
+            const Color(0xFF0E0E0E),
 
-        fontFamily: 'SFPro',
+        useMaterial3: true,
       ),
 
       home:
