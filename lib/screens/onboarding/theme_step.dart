@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_option_card.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class ThemeStep extends StatefulWidget {
 
@@ -27,137 +26,125 @@ class _ThemeStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 2,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 2,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Choose your aesthetic',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Your aesthetic can always be changed later inside settings.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 36),
-
-                OnboardingOptionCard(
-                  title: 'Dune',
-
-                  subtitle:
-                      'Warm taupes, soft luxury, calm minimalism.',
-
-                  selected:
-                      selectedTheme ==
-                          'Dune',
-
-                  onTap: () {
-                    setState(() {
-                      selectedTheme =
-                          'Dune';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Obsidian',
-
-                  subtitle:
-                      'Dark luxury with elevated contrast and elegance.',
-
-                  selected:
-                      selectedTheme ==
-                          'Obsidian',
-
-                  onTap: () {
-                    setState(() {
-                      selectedTheme =
-                          'Obsidian';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Evergreen',
-
-                  subtitle:
-                      'Nature-inspired wellness tones and soft greens.',
-
-                  selected:
-                      selectedTheme ==
-                          'Evergreen',
-
-                  onTap: () {
-                    setState(() {
-                      selectedTheme =
-                          'Evergreen';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Aurora',
-
-                  subtitle:
-                      'Airy gradients and soft glowing atmospheres.',
-
-                  selected:
-                      selectedTheme ==
-                          'Aurora',
-
-                  onTap: () {
-                    setState(() {
-                      selectedTheme =
-                          'Aurora';
-                    });
-                  },
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Choose your aesthetic',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Your aesthetic can always be changed later inside settings.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 36),
+
+          OnboardingOptionCard(
+            title: 'Dune',
+
+            subtitle:
+                'Warm taupes, soft luxury, calm minimalism.',
+
+            selected:
+                selectedTheme ==
+                    'Dune',
+
+            onTap: () {
+              setState(() {
+                selectedTheme =
+                    'Dune';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Obsidian',
+
+            subtitle:
+                'Dark luxury with elevated contrast and elegance.',
+
+            selected:
+                selectedTheme ==
+                    'Obsidian',
+
+            onTap: () {
+              setState(() {
+                selectedTheme =
+                    'Obsidian';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Evergreen',
+
+            subtitle:
+                'Nature-inspired wellness tones and soft greens.',
+
+            selected:
+                selectedTheme ==
+                    'Evergreen',
+
+            onTap: () {
+              setState(() {
+                selectedTheme =
+                    'Evergreen';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Aurora',
+
+            subtitle:
+                'Airy gradients and soft glowing atmospheres.',
+
+            selected:
+                selectedTheme ==
+                    'Aurora',
+
+            onTap: () {
+              setState(() {
+                selectedTheme =
+                    'Aurora';
+              });
+            },
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
