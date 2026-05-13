@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/category_picker_chip.dart';
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class FocusAreasStep
     extends StatefulWidget {
@@ -65,90 +64,78 @@ class _FocusAreasStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 3,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 3,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Choose your focus areas',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Select the areas that matter most to your lifestyle and goals.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 34),
-
-                Wrap(
-                  spacing: 14,
-                  runSpacing: 14,
-
-                  children:
-                      areas.map((area) {
-
-                    return CategoryPickerChip(
-                      text: area,
-
-                      selected:
-                          selectedAreas
-                              .contains(
-                        area,
-                      ),
-
-                      onTap: () {
-                        toggleArea(
-                          area,
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Choose your focus areas',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Select the areas that matter most to your lifestyle and goals.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 34),
+
+          Wrap(
+            spacing: 14,
+            runSpacing: 14,
+
+            children:
+                areas.map((area) {
+
+              return CategoryPickerChip(
+                text: area,
+
+                selected:
+                    selectedAreas
+                        .contains(
+                  area,
+                ),
+
+                onTap: () {
+                  toggleArea(
+                    area,
+                  );
+                },
+              );
+            }).toList(),
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
