@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../dashboard/dashboard_screen.dart';
 
+import 'ai_personality_step.dart';
 import 'biometric_setup_step.dart';
 import 'daily_rhythm_step.dart';
 import 'dashboard_style_step.dart';
@@ -75,6 +76,10 @@ class _OnboardingFlowScreenState
     ),
 
     ProfilePhotoStep(
+      onNext: nextPage,
+    ),
+
+    AiPersonalityStep(
       onNext: nextPage,
     ),
 
