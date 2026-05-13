@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/dashboard_header.dart';
 import '../../widgets/dashboard_search_bar.dart';
 import '../../widgets/date_weather_card.dart';
+import '../../widgets/habit_progress_card.dart';
 import '../../widgets/luxury_bottom_nav_bar.dart';
 import '../../widgets/luxury_side_menu.dart';
 import '../../widgets/quick_action_pill.dart';
@@ -221,7 +222,101 @@ class _DashboardScreenState
                     const TodayOverviewCard(),
 
                     const SizedBox(
-                      height: 26,
+                      height: 28,
+                    ),
+
+                    // HABITS TITLE
+                    const SectionTitle(
+                      title:
+                          'Today Progress',
+
+                      actionText:
+                          'View All',
+                    ),
+
+                    const SizedBox(
+                      height: 18,
+                    ),
+
+                    SizedBox(
+                      height: 210,
+
+                      child: ListView(
+                        scrollDirection:
+                            Axis.horizontal,
+
+                        children: const [
+
+                          SizedBox(
+                            width: 190,
+
+                            child:
+                                HabitProgressCard(
+                              title:
+                                  'Hydration',
+
+                              progress:
+                                  '5/8 Completed',
+
+                              percent:
+                                  .62,
+
+                              icon:
+                                  Icons.water_drop_outlined,
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: 18,
+                          ),
+
+                          SizedBox(
+                            width: 190,
+
+                            child:
+                                HabitProgressCard(
+                              title:
+                                  'Movement',
+
+                              progress:
+                                  '42 mins',
+
+                              percent:
+                                  .78,
+
+                              icon:
+                                  Icons.directions_walk,
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: 18,
+                          ),
+
+                          SizedBox(
+                            width: 190,
+
+                            child:
+                                HabitProgressCard(
+                              title:
+                                  'Nutrition',
+
+                              progress:
+                                  'Healthy Day',
+
+                              percent:
+                                  .88,
+
+                              icon:
+                                  Icons.restaurant,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 28,
                     ),
 
                     // SPACES TITLE
