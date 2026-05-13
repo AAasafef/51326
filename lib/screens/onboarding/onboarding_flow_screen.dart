@@ -12,6 +12,7 @@ import 'integrations_step.dart';
 import 'menu_setup_step.dart';
 import 'name_step.dart';
 import 'notification_style_step.dart';
+import 'privacy_preferences_step.dart';
 import 'profile_photo_step.dart';
 import 'sync_preferences_step.dart';
 import 'theme_step.dart';
@@ -95,6 +96,10 @@ class _OnboardingFlowScreenState
     ),
 
     WallpaperPreferencesStep(
+      onNext: nextPage,
+    ),
+
+    PrivacyPreferencesStep(
       onNext: nextPage,
     ),
 
