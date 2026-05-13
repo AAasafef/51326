@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../services/onboarding_service.dart';
+
 import '../../widgets/completion_ring.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_page_shell.dart';
@@ -24,6 +26,15 @@ class _FinalSetupStepState
     extends State<FinalSetupStep> {
 
   double progress = .82;
+
+  void finishSetup() {
+
+    OnboardingService
+        .instance
+        .completeOnboarding();
+
+    widget.onFinish();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +110,7 @@ class _FinalSetupStepState
             text: 'Enter Ciantis',
 
             onPressed:
-                widget.onFinish,
+                finishSetup,
           ),
         ],
       ),
