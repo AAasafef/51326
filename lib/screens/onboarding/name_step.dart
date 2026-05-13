@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../services/onboarding_service.dart';
+
 import '../../widgets/luxury_text_field.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_page_shell.dart';
@@ -35,6 +37,21 @@ class _NameStepState
     subtitleController.dispose();
 
     super.dispose();
+  }
+
+  void continueStep() {
+
+    OnboardingService
+        .instance
+        .profileName =
+        nameController.text;
+
+    OnboardingService
+        .instance
+        .subtitle =
+        subtitleController.text;
+
+    widget.onNext();
   }
 
   @override
@@ -107,7 +124,7 @@ class _NameStepState
             text: 'Continue',
 
             onPressed:
-                widget.onNext,
+                continueStep,
           ),
         ],
       ),
