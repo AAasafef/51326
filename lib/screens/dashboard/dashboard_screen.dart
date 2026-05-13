@@ -2,19 +2,46 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/dashboard_header.dart';
 import '../../widgets/glass_container.dart';
+import '../../widgets/luxury_bottom_nav_bar.dart';
 
 class DashboardScreen
-    extends StatelessWidget {
+    extends StatefulWidget {
 
   const DashboardScreen({
     super.key,
   });
 
   @override
+  State<DashboardScreen>
+      createState() =>
+          _DashboardScreenState();
+}
+
+class _DashboardScreenState
+    extends State<
+        DashboardScreen> {
+
+  int currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
           const Color(0xFF0E0E0E),
+
+      bottomNavigationBar:
+          LuxuryBottomNavBar(
+        currentIndex:
+            currentIndex,
+
+        onTap: (index) {
+
+          setState(() {
+            currentIndex =
+                index;
+          });
+        },
+      ),
 
       body: SafeArea(
         child: Padding(
@@ -173,7 +200,7 @@ class DashboardScreen
                   ],
                 ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 120),
               ],
             ),
           ),
