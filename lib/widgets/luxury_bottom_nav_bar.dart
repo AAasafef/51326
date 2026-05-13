@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_drawer_sheet.dart';
+
 class LuxuryBottomNavBar
     extends StatelessWidget {
 
@@ -13,6 +15,24 @@ class LuxuryBottomNavBar
     required this.currentIndex,
     required this.onTap,
   });
+
+  void openAppDrawer(
+    BuildContext context,
+  ) {
+
+    showModalBottomSheet(
+      context: context,
+
+      backgroundColor:
+          Colors.transparent,
+
+      isScrollControlled: true,
+
+      builder: (_) {
+        return const AppDrawerSheet();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +89,9 @@ class LuxuryBottomNavBar
                 Icons.calendar_month,
           ),
 
-          _centerButton(),
+          _centerButton(
+            context,
+          ),
 
           _navItem(
             index: 3,
@@ -133,37 +155,47 @@ class LuxuryBottomNavBar
     );
   }
 
-  Widget _centerButton() {
-    return Container(
-      height: 62,
-      width: 62,
+  Widget _centerButton(
+    BuildContext context,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        openAppDrawer(
+          context,
+        );
+      },
 
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
+      child: Container(
+        height: 62,
+        width: 62,
 
-        gradient: LinearGradient(
-          colors: [
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
 
-            Colors.white
-                .withOpacity(.18),
+          gradient: LinearGradient(
+            colors: [
 
-            Colors.white
-                .withOpacity(.05),
-          ],
-        ),
-
-        border: Border.all(
-          color:
               Colors.white
-                  .withOpacity(
-            .12,
+                  .withOpacity(.18),
+
+              Colors.white
+                  .withOpacity(.05),
+            ],
+          ),
+
+          border: Border.all(
+            color:
+                Colors.white
+                    .withOpacity(
+              .12,
+            ),
           ),
         ),
-      ),
 
-      child: const Icon(
-        Icons.grid_view_rounded,
-        color: Colors.white,
+        child: const Icon(
+          Icons.grid_view_rounded,
+          color: Colors.white,
+        ),
       ),
     );
   }
