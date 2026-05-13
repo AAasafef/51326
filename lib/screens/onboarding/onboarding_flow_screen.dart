@@ -8,6 +8,7 @@ import 'daily_rhythm_step.dart';
 import 'dashboard_style_step.dart';
 import 'final_setup_step.dart';
 import 'focus_areas_step.dart';
+import 'integrations_step.dart';
 import 'menu_setup_step.dart';
 import 'name_step.dart';
 import 'notification_style_step.dart';
@@ -85,6 +86,10 @@ class _OnboardingFlowScreenState
     ),
 
     SyncPreferencesStep(
+      onNext: nextPage,
+    ),
+
+    IntegrationsStep(
       onNext: nextPage,
     ),
 
