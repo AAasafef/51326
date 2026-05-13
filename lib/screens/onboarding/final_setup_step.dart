@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/completion_ring.dart';
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class FinalSetupStep
     extends StatefulWidget {
@@ -28,96 +27,81 @@ class _FinalSetupStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 17,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.center,
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.center,
 
-              children: [
+        children: [
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 17,
-                  totalSteps: 18,
-                ),
+          const Spacer(),
 
-                const Spacer(),
+          CompletionRing(
+            progress: progress,
+          ),
 
-                CompletionRing(
-                  progress: progress,
-                ),
+          const SizedBox(height: 34),
 
-                const SizedBox(height: 34),
-
-                const Text(
-                  'Preparing your Life OS',
-                  textAlign:
-                      TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 18),
-
-                const Text(
-                  'Configuring your dashboard, modules, themes, routines, and personalized experience.',
-                  textAlign:
-                      TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const Spacer(),
-
-                Column(
-                  children: [
-
-                    _setupItem(
-                      'Initializing dashboard',
-                    ),
-
-                    _setupItem(
-                      'Configuring modules',
-                    ),
-
-                    _setupItem(
-                      'Applying aesthetic',
-                    ),
-
-                    _setupItem(
-                      'Preparing wellness systems',
-                    ),
-                  ],
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Enter Ciantis',
-
-                  onPressed:
-                      widget.onFinish,
-                ),
-              ],
+          const Text(
+            'Preparing your Life OS',
+            textAlign:
+                TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 18),
+
+          const Text(
+            'Configuring your dashboard, modules, themes, routines, and personalized experience.',
+            textAlign:
+                TextAlign.center,
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const Spacer(),
+
+          Column(
+            children: [
+
+              _setupItem(
+                'Initializing dashboard',
+              ),
+
+              _setupItem(
+                'Configuring modules',
+              ),
+
+              _setupItem(
+                'Applying aesthetic',
+              ),
+
+              _setupItem(
+                'Preparing wellness systems',
+              ),
+            ],
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Enter Ciantis',
+
+            onPressed:
+                widget.onFinish,
+          ),
+        ],
       ),
     );
   }
