@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'name_step.dart';
 import 'welcome_step.dart';
 
 class OnboardingFlowScreen
@@ -24,17 +25,15 @@ class _OnboardingFlowScreenState
 
   int currentPage = 0;
 
-  final List<Widget> pages = const [
+  late final List<Widget> pages = [
 
-    WelcomeStep(),
+    WelcomeStep(
+      onNext: nextPage,
+    ),
 
-    // NEXT STEPS
-    // Add later:
-    //
-    // NameStep(),
-    // ThemeStep(),
-    // NotificationStep(),
-    // etc...
+    NameStep(
+      onNext: nextPage,
+    ),
   ];
 
   void nextPage() {
@@ -57,6 +56,9 @@ class _OnboardingFlowScreenState
     return Scaffold(
       body: PageView(
         controller: pageController,
+
+        physics:
+            const NeverScrollableScrollPhysics(),
 
         onPageChanged: (index) {
           setState(() {
