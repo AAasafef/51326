@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_option_card.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class DailyRhythmStep
     extends StatefulWidget {
@@ -30,119 +29,107 @@ class _DailyRhythmStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 8,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 8,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'What is your daily rhythm?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Ciantis will personalize routines, reminders, and scheduling around your natural lifestyle flow.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 36),
-
-                OnboardingOptionCard(
-                  title: 'Morning Focused',
-
-                  subtitle:
-                      'Early productivity, routines, and structured mornings.',
-
-                  selected:
-                      selectedRhythm ==
-                          'Morning Focused',
-
-                  onTap: () {
-                    setState(() {
-                      selectedRhythm =
-                          'Morning Focused';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Night Owl',
-
-                  subtitle:
-                      'Late-night creativity, flexible mornings, and evening productivity.',
-
-                  selected:
-                      selectedRhythm ==
-                          'Night Owl',
-
-                  onTap: () {
-                    setState(() {
-                      selectedRhythm =
-                          'Night Owl';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Balanced',
-
-                  subtitle:
-                      'Flexible structure throughout the day with balanced energy management.',
-
-                  selected:
-                      selectedRhythm ==
-                          'Balanced',
-
-                  onTap: () {
-                    setState(() {
-                      selectedRhythm =
-                          'Balanced';
-                    });
-                  },
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'What is your daily rhythm?',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Ciantis will personalize routines, reminders, and scheduling around your natural lifestyle flow.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 36),
+
+          OnboardingOptionCard(
+            title: 'Morning Focused',
+
+            subtitle:
+                'Early productivity, routines, and structured mornings.',
+
+            selected:
+                selectedRhythm ==
+                    'Morning Focused',
+
+            onTap: () {
+              setState(() {
+                selectedRhythm =
+                    'Morning Focused';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Night Owl',
+
+            subtitle:
+                'Late-night creativity, flexible mornings, and evening productivity.',
+
+            selected:
+                selectedRhythm ==
+                    'Night Owl',
+
+            onTap: () {
+              setState(() {
+                selectedRhythm =
+                    'Night Owl';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Balanced',
+
+            subtitle:
+                'Flexible structure throughout the day with balanced energy management.',
+
+            selected:
+                selectedRhythm ==
+                    'Balanced',
+
+            onTap: () {
+              setState(() {
+                selectedRhythm =
+                    'Balanced';
+              });
+            },
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
