@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../services/onboarding_service.dart';
+
 import '../../widgets/category_picker_chip.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_page_shell.dart';
@@ -60,6 +62,16 @@ class _FocusAreasStepState
         selectedAreas.add(area);
       }
     });
+  }
+
+  void continueStep() {
+
+    OnboardingService
+        .instance
+        .focusAreas =
+        selectedAreas;
+
+    widget.onNext();
   }
 
   @override
@@ -133,7 +145,7 @@ class _FocusAreasStepState
             text: 'Continue',
 
             onPressed:
-                widget.onNext,
+                continueStep,
           ),
         ],
       ),
