@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/dashboard_header.dart';
 import '../../widgets/dashboard_search_bar.dart';
+import '../../widgets/date_weather_card.dart';
 import '../../widgets/luxury_bottom_nav_bar.dart';
 import '../../widgets/luxury_side_menu.dart';
 import '../../widgets/quick_action_pill.dart';
@@ -135,6 +136,13 @@ class _DashboardScreenState
 
                     // WELCOME BANNER
                     const WelcomeBannerCard(),
+
+                    const SizedBox(
+                      height: 22,
+                    ),
+
+                    // DATE + WEATHER
+                    const DateWeatherCard(),
 
                     const SizedBox(
                       height: 22,
