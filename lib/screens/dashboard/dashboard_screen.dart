@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/dashboard_header.dart';
+import '../../widgets/dashboard_search_bar.dart';
 import '../../widgets/glass_container.dart';
 import '../../widgets/luxury_bottom_nav_bar.dart';
 import '../../widgets/luxury_side_menu.dart';
@@ -116,6 +117,13 @@ class _DashboardScreenState
                         ),
                       ],
                     ),
+
+                    const SizedBox(
+                      height: 22,
+                    ),
+
+                    // SEARCH BAR
+                    const DashboardSearchBar(),
 
                     const SizedBox(
                       height: 28,
