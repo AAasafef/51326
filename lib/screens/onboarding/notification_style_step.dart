@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/onboarding_background.dart';
 import '../../widgets/onboarding_bottom_button.dart';
 import '../../widgets/onboarding_option_card.dart';
-import '../../widgets/onboarding_progress_bar.dart';
+import '../../widgets/onboarding_page_shell.dart';
 
 class NotificationStyleStep
     extends StatefulWidget {
@@ -30,119 +29,107 @@ class _NotificationStyleStepState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: OnboardingBackground(
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 18,
-            ),
+    return OnboardingPageShell(
+      currentStep: 5,
+      totalSteps: 18,
 
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+      onSkip:
+          widget.onNext,
 
-              children: [
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
 
-                // PROGRESS
-                const OnboardingProgressBar(
-                  currentStep: 5,
-                  totalSteps: 18,
-                ),
+        children: [
 
-                const Spacer(),
+          const Spacer(),
 
-                const Text(
-                  'Choose notification style',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight:
-                        FontWeight.w300,
-                  ),
-                ),
-
-                const SizedBox(height: 14),
-
-                const Text(
-                  'Decide how involved Ciantis should be throughout your day.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                    height: 1.6,
-                  ),
-                ),
-
-                const SizedBox(height: 36),
-
-                OnboardingOptionCard(
-                  title: 'Minimal',
-
-                  subtitle:
-                      'Only important reminders and critical updates.',
-
-                  selected:
-                      selectedStyle ==
-                          'Minimal',
-
-                  onTap: () {
-                    setState(() {
-                      selectedStyle =
-                          'Minimal';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Balanced',
-
-                  subtitle:
-                      'Helpful reminders without becoming overwhelming.',
-
-                  selected:
-                      selectedStyle ==
-                          'Balanced',
-
-                  onTap: () {
-                    setState(() {
-                      selectedStyle =
-                          'Balanced';
-                    });
-                  },
-                ),
-
-                OnboardingOptionCard(
-                  title: 'Detailed',
-
-                  subtitle:
-                      'Full coaching, wellness insights, and productivity guidance.',
-
-                  selected:
-                      selectedStyle ==
-                          'Detailed',
-
-                  onTap: () {
-                    setState(() {
-                      selectedStyle =
-                          'Detailed';
-                    });
-                  },
-                ),
-
-                const Spacer(),
-
-                OnboardingBottomButton(
-                  text: 'Continue',
-
-                  onPressed:
-                      widget.onNext,
-                ),
-              ],
+          const Text(
+            'Choose notification style',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 34,
+              fontWeight:
+                  FontWeight.w300,
             ),
           ),
-        ),
+
+          const SizedBox(height: 14),
+
+          const Text(
+            'Decide how involved Ciantis should be throughout your day.',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+
+          const SizedBox(height: 36),
+
+          OnboardingOptionCard(
+            title: 'Minimal',
+
+            subtitle:
+                'Only important reminders and critical updates.',
+
+            selected:
+                selectedStyle ==
+                    'Minimal',
+
+            onTap: () {
+              setState(() {
+                selectedStyle =
+                    'Minimal';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Balanced',
+
+            subtitle:
+                'Helpful reminders without becoming overwhelming.',
+
+            selected:
+                selectedStyle ==
+                    'Balanced',
+
+            onTap: () {
+              setState(() {
+                selectedStyle =
+                    'Balanced';
+              });
+            },
+          ),
+
+          OnboardingOptionCard(
+            title: 'Detailed',
+
+            subtitle:
+                'Full coaching, wellness insights, and productivity guidance.',
+
+            selected:
+                selectedStyle ==
+                    'Detailed',
+
+            onTap: () {
+              setState(() {
+                selectedStyle =
+                    'Detailed';
+              });
+            },
+          ),
+
+          const Spacer(),
+
+          OnboardingBottomButton(
+            text: 'Continue',
+
+            onPressed:
+                widget.onNext,
+          ),
+        ],
       ),
     );
   }
